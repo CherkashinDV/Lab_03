@@ -5,6 +5,7 @@
 #include <vector>
 #include<windows.h>
 #pragma hdrstop
+#include "histogram.h"
 using namespace std;
 
 vector<double>input_numbers(size_t count) //функция ввода чисел
@@ -16,23 +17,7 @@ vector<double>input_numbers(size_t count) //функция ввода чисел
     }
     return result;
 }
-void find_minmax(const vector<double>& numbers, double& min, double& max)
-{
-    min=numbers[0];    // границы корзины
-    max = numbers[0];
 
-    for(double number : numbers) // проходимся по всем элементам и находим минимальную и максимальную границу корзины
-    {
-        if(min>number)
-        {
-            min=number ;
-        }
-        else if(max<number)
-        {
-            max=number;
-        }
-    }
-}
 vector<double>make_histogram(const vector<double>numbers,double min, double max,size_t number_count,size_t bin_count)
 {
     vector<double>bins(bin_count,0);
@@ -74,29 +59,11 @@ void show_histogram_text(const vector <double> bins)
         }
 
     }
-    for(size_t bin:bins)
-    {
-        size_t height = bin;
 
-        if (height > MAX_ASTERISK)
-        {
-            height = MAX_ASTERISK * (static_cast<double>(bin) /max_bin);
-        }
-        if(bin<100)
-            for(size_t i=0; i<(MAX_ASTERISK-bin); i++)
-            {
-                cout<<" ";
-            }
-        for(size_t i=0; i< height; i++)
-        {
-            cout<<"*";
 
-        }
-
-        cout <<"|" << bin;
-        cout << endl;
-    }
 }
+
+
 void
 svg_begin(double width, double height) {
     cout << "<?xml version='1.0' encoding='UTF-8'?>\n";
@@ -121,7 +88,7 @@ void svg_rect(double x, double y, double width, double height,string stroke = "b
 {
  cout<<"<rect x='" << x <<"' y='"<< y <<"' width='"<< width <<"' height='"<< height <<"' stroke='"<<stroke<<"' fill='"<<fill<<"' />" <<endl;
 }
-void show_histogram_svg(const vector<double>& bins)
+void show_histogram_svg(const vector<double>& bins,size_t bin_count)
 {
         const auto IMAGE_WIDTH = 400;
         const auto IMAGE_HEIGHT = 300;
@@ -132,6 +99,9 @@ void show_histogram_svg(const vector<double>& bins)
         const auto BLOCK_WIDTH = 10;
         const string stroke ="black";
         const string fill="#3CB371";
+
+
+
         svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
         double top = 0;
         for (size_t bin : bins)
@@ -156,7 +126,7 @@ int main()
     double min,max;
     find_minmax( numbers, min,max);
     const auto bins = make_histogram(numbers,min,max,number_count,bin_count);
-    show_histogram_svg(bins);
+    show_histogram_svg(bins,bin_count);
     return 0;
 }
 
