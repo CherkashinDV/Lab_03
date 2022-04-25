@@ -8,10 +8,10 @@
 	<windows.h>
 	"histogram.h"
 
-1650873696 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.h
+1650879066 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.h
 	<vector>
 
-1650873305 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.cpp
+1650884079 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.cpp
 	<iostream>
 	<math.h>
 	<conio.h>

@@ -84,14 +84,36 @@ void show_histogram_text(const vector <double> bins)
     size_t max_bin = 0;
     for(size_t bin:bins)
     {
-
-        if(max_bin<=bin)
+        if(bin>max_bin)
         {
             max_bin=bin;
         }
-
     }
+       const bool check = max_bin > MAX_ASTERISK;
+    for (size_t bin : bins) {
+        if (bin < 100) {
+            cout << ' ';
+        }
+        if (bin < 10) {
+            cout << ' ';
+        }
+        cout << bin << "|";
+
+        size_t height = bin;
+        if (check) {
+            const double scaling_factor = (double)MAX_ASTERISK / max_bin;
+            height = (size_t)(bin * scaling_factor);
+        }
+
+        for (size_t i = 0; i < height; i++) {
+            cout << '*';
+        }
+        cout << '\n';
+
+
 }
+}
+
 
 void
 svg_begin(double width, double height) {
@@ -116,29 +138,49 @@ void svg_rect(double x, double y, double width, double height,string stroke , st
  cout<<"<rect x='" << x <<"' y='"<< y <<"' width='"<< width <<"' height='"<< height <<"' stroke='"<<stroke<<"' fill='"<<fill<<"' />" <<endl;
 
 }
- void show_histogram_svg(const vector<double>& bins,size_t bin_count)
+double average_column_height(const vector<double>& bins,size_t bin_count)
 {
-        const auto IMAGE_WIDTH = 400;
-        const auto IMAGE_HEIGHT = 300;
+
         const auto TEXT_LEFT = 20;
         const auto TEXT_BASELINE = 20;
         const auto TEXT_WIDTH = 50;
         const auto BIN_HEIGHT = 30;
         const auto BLOCK_WIDTH = 10;
-        const string stroke ="red";
-        const string fill="red";
+size_t middle_height =0;
 
+    for(size_t bin:bins)
+    {
+        middle_height=middle_height+bin;
 
+    }
+    middle_height=middle_height/bin_count;
 
-        svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
         double top = 0;
         for (size_t bin : bins)
-        {
+        {   size_t height=bin;
             const double bin_width = BLOCK_WIDTH * bin;
             svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
-            svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT,"red","green");
+            if ( height >middle_height){
+            svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT,"black","red");}
+            else {
+              svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT,"black","green");
+            }
+
             top += BIN_HEIGHT;
         }
+        return middle_height;
+}
+
+ void show_histogram_svg(const vector<double>& bins,size_t bin_count)
+{
+
+        const auto IMAGE_WIDTH = 800;
+        const auto IMAGE_HEIGHT = 300;
+
+        const string stroke ="red";
+        const string fill="red";
+        svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
+        average_column_height(bins,bin_count);
         svg_end();
     }
 
