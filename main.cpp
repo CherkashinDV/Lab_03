@@ -7,6 +7,8 @@
 #include <curl/curl.h>
 #pragma hdrstop
 #include "histogram.h"
+#include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -121,11 +123,10 @@ void show_histogram_text(const vector <double> &bins)
 }
 
 
-int
-main(int argc, char* argv[]) {
-  if (argc > 1){
-
-        CURL *curl = curl_easy_init();
+Input
+download(const string& argv) {
+    stringstream buffer;
+     CURL *curl = curl_easy_init();
         if(curl)
         {
             CURLcode res;
@@ -138,11 +139,32 @@ main(int argc, char* argv[]) {
             }
                              curl_easy_cleanup(curl);
 
+
+curl_global_init(CURL_GLOBAL_ALL);
+
+     return read_input(buffer, false);
+}
+}
+
+int main(int argc, char* argv[])
+{
+
+
+
+    Input input;
+
+        if (argc > 1)
+        {
+            input = download(argv [1]);
+        }
+        else
+        {
+            input = read_input(cin, 1);
         }
         return 0;
-    }
-curl_global_init(CURL_GLOBAL_ALL);
-    const auto input = read_input(cin,1);
+
+
+
     const auto bins = make_histogram(input);
     show_histogram_svg(bins);
 }
