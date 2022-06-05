@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1650872736 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\main.cpp
+1654445473 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\main.cpp
 	<iostream>
 	<math.h>
 	<conio.h>
@@ -8,10 +8,26 @@
 	<windows.h>
 	"histogram.h"
 
-1650873696 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.h
+1654445607 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.h
+	<iostream>
+	<math.h>
+	<conio.h>
+	<string.h>
+	<vector>
+	<windows.h>
 	<vector>
 
-1650873305 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.cpp
+1654445473 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.cpp
+	<iostream>
+	<math.h>
+	<conio.h>
+	<string.h>
+	<vector>
+	<windows.h>
+	<fstream>
+	"histogram.h"
+
+1650916812 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\test.cpp
 	<iostream>
 	<math.h>
 	<conio.h>
@@ -19,4 +35,5 @@
 	<vector>
 	<windows.h>
 	"histogram.h"
+	<cassert>
 

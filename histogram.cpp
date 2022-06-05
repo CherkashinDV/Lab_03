@@ -4,21 +4,14 @@
 #include <string.h>
 #include <vector>
 #include<windows.h>
+#include <fstream>
 #pragma hdrstop
 
 #include "histogram.h"
 
 
 
-vector<double>input_numbers(size_t count) //функция ввода чисел
-{
-    vector<double> result(count);
-    for (size_t i = 0; i < count; i++)
-    {
-        cin >> result[i];
-    }
-    return result;
-}
+
 
 void find_minmax(const vector<double>& numbers, double& min, double& max)
 {
@@ -77,21 +70,9 @@ vector<double>make_histogram(const vector<double>numbers,double min, double max,
 }
 
 
-void show_histogram_text(const vector <double> bins)
-{
-    const size_t SCREEN_WIDTH =80;
-    const size_t MAX_ASTERISK = SCREEN_WIDTH-3-1;// длина звездочек
-    size_t max_bin = 0;
-    for(size_t bin:bins)
-    {
 
-        if(max_bin<=bin)
-        {
-            max_bin=bin;
-        }
 
-    }
-}
+
 
 void
 svg_begin(double width, double height) {
@@ -116,8 +97,37 @@ void svg_rect(double x, double y, double width, double height,string stroke , st
  cout<<"<rect x='" << x <<"' y='"<< y <<"' width='"<< width <<"' height='"<< height <<"' stroke='"<<stroke<<"' fill='"<<fill<<"' />" <<endl;
 
 }
+string average_column_height(const vector<double>& bins,size_t bin_count,size_t height)
+{
+auto color ="red";
+
+
+size_t middle_height =0;
+
+    for(size_t bin:bins)
+    {
+        middle_height=middle_height+bin;
+
+    }
+    middle_height=middle_height/bin_count;
+
+    if(height>middle_height)
+    {
+
+        color="red";
+    }
+    else
+    {
+        color = "green";
+    }
+
+
+        return color;
+}
+
  void show_histogram_svg(const vector<double>& bins,size_t bin_count)
 {
+
         const auto IMAGE_WIDTH = 400;
         const auto IMAGE_HEIGHT = 300;
         const auto TEXT_LEFT = 20;
@@ -125,20 +135,37 @@ void svg_rect(double x, double y, double width, double height,string stroke , st
         const auto TEXT_WIDTH = 50;
         const auto BIN_HEIGHT = 30;
         const auto BLOCK_WIDTH = 10;
+        const auto MAX_ASTERISK = IMAGE_WIDTH - TEXT_WIDTH;
         const string stroke ="red";
         const string fill="red";
 
 
+    size_t max_count = 0;
+    for (size_t bin : bins) {
+        if (bin * BLOCK_WIDTH > max_count) {
+ max_count = bin * BLOCK_WIDTH;
+        }
+    }
+    const bool scaling_needed = max_count > MAX_ASTERISK;
 
-        svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
-        double top = 0;
-        for (size_t bin : bins)
-        {
-            const double bin_width = BLOCK_WIDTH * bin;
+    svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
+    double top = 0;
+    for (size_t bin : bins) {
+        size_t bin_scale = bin;
+        if(scaling_needed) {
+            const double scaling_factor = (double)MAX_ASTERISK / max_count;
+ bin_scale = (size_t)(bin * scaling_factor);
+        }
+        const double bin_width = BLOCK_WIDTH * bin_scale;
             svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
-            svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT,"red","green");
+
+            svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT,"black","green");
+
             top += BIN_HEIGHT;
         }
+
+
+
         svg_end();
     }
 
