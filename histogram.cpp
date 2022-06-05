@@ -4,70 +4,11 @@
 #include <string.h>
 #include <vector>
 #include<windows.h>
-#include <fstream>
 #pragma hdrstop
 
 #include "histogram.h"
 
 
-
-
-
-void find_minmax(const vector<double>& numbers, double& min, double& max)
-{
-    if (size(numbers) > 0)
-    {
-
-
-    min=numbers[0];    // границы корзины
-    max = numbers[0];
-
-    for(double number : numbers) // проходимся по всем элементам и находим минимальную и максимальную границу корзины
-    {
-            if(min>number)
-        {
-            min=number ;
-        }
-        else if(max<number)
-        {
-            max=number;
-        }
-
-
-
-    }
-    }
-}
-
-
-
-
-vector<double>make_histogram(const vector<double>numbers,double min, double max,size_t number_count,size_t bin_count)
-{
-    vector<double>bins(bin_count,0);
-    double bin_size=(max-min)/bin_count;
-    for(size_t i = 0 ; i<number_count; i++) // проходимся по элементам
-    {
-        bool found = false;
-        for(size_t j=0; j<(bin_count-1) && !found; j++) // проходимся по корзинам
-        {
-            auto lo = min + bin_size*j;
-            auto hi = min + bin_size*(j+1);
-
-            if((lo<=numbers[i]) && (numbers[i]<hi)) // проверка на попадание элемента в корзину
-            {
-                bins[j]++;
-                found=true;
-
-            }
-        }
-        if(!found) // проверка ,чтобы  элементы соответсвующие правой границе гистограммы попадали в корзину
-        {
-            bins[bin_count-1]++;
-        }
-    }
-    return bins;
-}
 
 
 
@@ -125,7 +66,7 @@ size_t middle_height =0;
         return color;
 }
 
- void show_histogram_svg(const vector<double>& bins,size_t bin_count)
+ void show_histogram_svg(const vector<double>& bins)
 {
 
         const auto IMAGE_WIDTH = 400;

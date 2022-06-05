@@ -9,6 +9,8 @@
 
 using namespace std;
 
+
+
 vector<double>input_numbers(istream& in,size_t count) //функция ввода чисел
 {
     vector<double> result(count);
@@ -19,7 +21,65 @@ vector<double>input_numbers(istream& in,size_t count) //функция ввода чисел
     return result;
 }
 
-void show_histogram_text(const vector <double> bins)
+
+void find_minmax(const vector<double>& numbers, double& min, double& max)
+{
+    if (size(numbers) > 0)
+    {
+
+
+    min=numbers[0];    // границы корзины
+    max = numbers[0];
+
+    for(double number : numbers) // проходимся по всем элементам и находим минимальную и максимальную границу корзины
+    {
+            if(min>number)
+        {
+            min=number ;
+        }
+        else if(max<number)
+        {
+            max=number;
+        }
+
+
+
+    }
+    }
+}
+Input
+read_input(istream& in) {
+    Input data;
+
+    cerr << "Enter number count: ";
+    size_t number_count;
+    in >> number_count;
+
+    cerr << "Enter numbers: ";
+    data.numbers = input_numbers(in,number_count);
+
+    cerr << "Enter bin count: ";
+    in >> data.bin_count;
+
+    return data;
+}
+
+vector<double>make_histogram(Input data){
+    double min, max;
+     find_minmax(data.numbers, min, max);
+ vector<double> bins(data.bin_count, 0);
+    for (double number : data.numbers) {
+        size_t bin = (size_t)(((number - min) / (max - min)) * data.bin_count);
+        if (bin == data.bin_count) {
+ bin--;
+        }
+ bins[bin]++;
+    }
+    return(bins);
+}
+
+
+void show_histogram_text(const vector <double> &bins)
 {
     const size_t SCREEN_WIDTH =80;
     const size_t MAX_ASTERISK = SCREEN_WIDTH-3-1;// длина звездочек
@@ -55,20 +115,15 @@ void show_histogram_text(const vector <double> bins)
 
 }
 }
-int main()
-{
-    size_t number_count;
-    cerr << "Enter number count:";
-    cin >> number_count;
- const auto numbers = input_numbers(cin,number_count); //вызов функции ввода чисел
-    size_t bin_count; // количество корзин
-    cerr<<"Enter bin count:";
-    cin>>bin_count;
-    double min,max;
-    find_minmax( numbers, min,max);
-    const auto bins = make_histogram(numbers,min,max,number_count,bin_count);
-    show_histogram_svg(bins,bin_count);
-    return 0;
+
+
+int
+main() {
+
+    Input data;
+    data = read_input(cin);
+    const auto bins = make_histogram(data);
+    show_histogram_svg(bins);
 }
 
 
