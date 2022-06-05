@@ -48,17 +48,20 @@ void find_minmax(const vector<double>& numbers, double& min, double& max)
     }
 }
 Input
-read_input(istream& in) {
+read_input(istream& in,bool prompt) {
     Input data;
-
+if (prompt){
     cerr << "Enter number count: ";
+}
     size_t number_count;
     in >> number_count;
-
+if (prompt){
     cerr << "Enter numbers: ";
+}
     data.numbers = input_numbers(in,number_count);
-
+if (prompt){
     cerr << "Enter bin count: ";
+}
     in >> data.bin_count;
 
     return data;
@@ -120,9 +123,9 @@ void show_histogram_text(const vector <double> &bins)
 int
 main() {
 
-    Input data;
-    data = read_input(cin);
-    const auto bins = make_histogram(data);
+
+    const auto input = read_input(cin,1);
+    const auto bins = make_histogram(input);
     show_histogram_svg(bins);
 }
 
