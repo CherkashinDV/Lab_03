@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1654460837 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\main.cpp
+1654464307 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\main.cpp
 	<iostream>
 	<math.h>
 	<conio.h>
 	<string.h>
 	<vector>
 	<windows.h>
+	<curl/curl.h>
 	"histogram.h"
 
 1654460123 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.h
@@ -35,4 +36,48 @@
 	<windows.h>
 	"histogram.h"
 	<cassert>
+
+1654461497 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\curl\include\curl\curl.h
+	"curlver.h"
+	"system.h"
+	<stdio.h>
+	<limits.h>
+	<osreldate.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	"easy.h"
+	"multi.h"
+	"urlapi.h"
+	"options.h"
+	"header.h"
+	"typecheck-gcc.h"
+
+1654461497 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\curl\include\curl\curlver.h
+
+1654461497 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\curl\include\curl\system.h
+	<winsock2.h>
+	<windows.h>
+	<ws2tcpip.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/poll.h>
+
+1654461497 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\curl\include\curl\easy.h
+
+1654461497 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\curl\include\curl\multi.h
+	"curl.h"
+
+1654461497 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\curl\include\curl\urlapi.h
+	"curl.h"
+
+1654461497 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\curl\include\curl\options.h
+
+1654461497 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\curl\include\curl\header.h
+
+1654461497 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\curl\include\curl\typecheck-gcc.h
 
