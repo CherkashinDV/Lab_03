@@ -122,14 +122,14 @@ void show_histogram_text(const vector <double> &bins)
 
 
 int
-main() {
-    /*if(argc>1)
-    {
-        for(int i=0; i<argc; i++)
-        {
-            cout<<"argv["<<i<<"]="<<argv[i]<<endl;
+main(int argc, char* argv[]) {
+  if (argc > 1){
+        cout << "argc = " << argc <<'\n';
+        for(size_t i = 0; i<argc; i ++ ){
+            cout << "argv[" << i << "] = " << argv[i] << '\n';
         }
-return 0*/
+        return 0;
+    }
 curl_global_init(CURL_GLOBAL_ALL);
     const auto input = read_input(cin,1);
     const auto bins = make_histogram(input);
