@@ -5,7 +5,7 @@
 #include <vector>
 #include<windows.h>
 #pragma hdrstop
-
+#define INFO_BUFFER_SIZE 50
 #include "histogram.h"
 
 
@@ -66,7 +66,7 @@ size_t middle_height =0;
         return color;
 }
 
- void show_histogram_svg(const vector<double>& bins)
+ void show_histogram_svg(const vector<size_t>& bins)
 {
 
         const auto IMAGE_WIDTH = 400;
@@ -105,10 +105,38 @@ size_t middle_height =0;
             top += BIN_HEIGHT;
         }
 
-
-
+    svg_text(TEXT_LEFT, top + TEXT_BASELINE, make_info_text(1));
+    top += BIN_HEIGHT;
+    svg_text(TEXT_LEFT, top + TEXT_BASELINE, make_info_text(2));
         svg_end();
     }
+
+string
+make_info_text(char T) {
+     stringstream buffer;
+    if(T == 1){
+ DWORD info = GetVersion();
+ DWORD mask = 0x0000ffff;
+ DWORD version = info & mask;
+ DWORD platform = info >> 16;
+ DWORD version_minor = version >> 8;
+ DWORD version_major = version & 0x0000ff;
+        printf("Windows v%u.%u", version_major, version_minor);
+        if ((info & 0x40000000) == 0) {
+ DWORD build = platform;
+            printf(" (build %u)\n", build);
+ buffer<<"Windows v" <<version_major<<"."<<version_minor<<" (build "<<build<<")";
+        }
+    }
+    else if(T == 2){
+        char infoBuf[INFO_BUFFER_SIZE];
+ DWORD bufCharCount = INFO_BUFFER_SIZE;
+        GetComputerNameA(infoBuf, &bufCharCount);
+        printf("Computer name: %s", infoBuf);
+ buffer << "Computer name: " << infoBuf;
+    }
+    return buffer.str();
+}
 
 
 

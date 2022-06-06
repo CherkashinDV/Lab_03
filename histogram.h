@@ -8,7 +8,7 @@
 #pragma hdrstop
 #pragma once
 #include <vector>
-
+#include <sstream>
 using namespace std;
 
 
@@ -20,13 +20,12 @@ using namespace std;
 void
 find_minmax(const vector<double> &numbers, double& min, double& max);
 
-
+string make_info_text(char T = '1');
 void svg_begin(double width, double height);
 void svg_end();
 void svg_text(double left, double baseline, string text);
 void svg_rect(double x, double y, double width, double height,string stroke ="red" , string fill="red" );
-string average_column_height(const vector<double>& bins,size_t bin_count,size_t height);
-void show_histogram_svg(const vector<double>& bins);
-
+string average_column_height(const vector<double>* bins,size_t bin_count,size_t height);
+void show_histogram_svg(const vector<size_t>& bins);
 
 

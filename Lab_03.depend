@@ -1,17 +1,11 @@
 # depslib dependency file v1.0
-1654481185 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\main.cpp
+1654497421 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\main.cpp
 	<iostream>
-	<math.h>
-	<conio.h>
-	<string.h>
 	<vector>
-	<windows.h>
-	<curl/curl.h>
 	"histogram.h"
-	<sstream>
-	<string>
+	<windows.h>
 
-1654460123 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.h
+1654496112 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.h
 	<iostream>
 	<math.h>
 	<conio.h>
@@ -19,8 +13,9 @@
 	<vector>
 	<windows.h>
 	<vector>
+	<sstream>
 
-1654458888 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.cpp
+1654497501 source:c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.cpp
 	<iostream>
 	<math.h>
 	<conio.h>
@@ -82,4 +77,13 @@
 1654461497 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\curl\include\curl\header.h
 
 1654461497 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\curl\include\curl\typecheck-gcc.h
+
+1654492201 c:\Прога\Прога Лабы\2-ой семестр РПОСУ\lab_03\lab_03\histogram.cpp
+	<iostream>
+	<math.h>
+	<conio.h>
+	<string.h>
+	<vector>
+	<windows.h>
+	"histogram.h"
 
