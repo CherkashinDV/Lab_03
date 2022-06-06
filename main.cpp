@@ -156,9 +156,16 @@ download(const string& address) {
 int main(int argc, char* argv[])
 {
 
+ const char* name = "Commander Shepard";
+    int year = 2154;
+    printf("%s was born in %d.\n", name, year);
+    printf("n = %08x\n", 0x1234567);
+    return 0;
 
+    size_t number_count;
+    cerr << "Enter number count: ";
 
-    Input input;
+    /*Input input;
 
         if (argc > 1)
         {
@@ -173,7 +180,7 @@ int main(int argc, char* argv[])
 
 
     const auto bins = make_histogram(input);
-    show_histogram_svg(bins);
+    show_histogram_svg(bins);*/
 }
 
 
